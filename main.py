@@ -10,7 +10,7 @@ import os
 from datetime import datetime
 from analytics import run_analysis, available_operations, generate_plotly_figure
 from cleaning import dropna_selected_columns
-from export import build_pdf_report
+import export
 
 st.set_page_config(page_title="HealthCareLytics", layout="wide")
 
@@ -166,7 +166,7 @@ if uploaded_file:
         ts = datetime.now().strftime("%Y%m%d_%H%M%S")
         report_path = os.path.join(REPORTS_DIR, f"report_{ts}.pdf")
         try:
-            build_pdf_report(
+            export.build_pdf_report(
                 report_path,
                 df_sample=df_filtered.head(5000),
                 analysis_result=result_df if 'result_df' in locals() else None,
@@ -178,4 +178,5 @@ if uploaded_file:
             st.success(f"Report saved to {report_path}")
             st.download_button("Download PDF report", data=pdf_bytes, file_name=os.path.basename(report_path), mime="application/pdf")
         except Exception as e:
+
             st.error(f"Failed to generate report: {e}")
