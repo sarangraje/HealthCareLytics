@@ -1,0 +1,18 @@
+# Core
+pandas
+numpy
+
+# Web app
+streamlit
+
+# Charts
+plotly
+matplotlib
+seaborn
+
+# Data export
+reportlab
+openpyxl  # Excel support
+
+# Optional (performance & utils)
+scikit-learn  # if you add ML later
